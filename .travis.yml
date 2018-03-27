@@ -9,7 +9,7 @@ matrix:
       osx_image: xcode8.3
       install:
         - brew update &> /dev/null
-        - brew upgrade &> /dev/null
-        - brew install swig coreutils gnu-sed automake autoconf pkg-config &> /dev/null
+        - brew install swig yarn node gnu-sed autoconf pkg-config
+        - pip2 install virtualenv
       script:
         - cd $HOME/build/greenaddress/WalletElectron && ./prepare.sh mainnet
