@@ -1,0 +1,22 @@
+<!doctype html>
+<html>
+<head>
+  <script>
+    var lang;
+    if (localStorage.language)
+      lang = JSON.parse(localStorage.language);
+    else
+      lang = 'en';
+    var argv = require('electron').remote.process.argv;
+    var lastArgv = argv[argv.length-1];
+    var suffix = '';
+    if (lastArgv.indexOf('bitcoin:') === 0) {
+      suffix = '#/uri?uri=' + encodeURIComponent(lastArgv);
+    }
+    location.href = lang + '/wallet.html' + suffix;
+  </script>
+  <title>GreenAddress</title>
+</head>
+<body>
+</body>
+</html>

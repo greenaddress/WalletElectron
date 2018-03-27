@@ -1,0 +1,89 @@
+linux_mainnet:
+  image: greenaddress/electron@sha256:d0f0440a10cc8c4a476eefcf479cb7f7963f247361b16d6369e6c7993845a678
+  artifacts:
+    expire_in: 1 hour
+    paths:
+    - dist/greenaddress*.AppImage
+    when: on_success
+  tags:
+    - ga
+  script:
+    - cd $CI_PROJECT_DIR
+    - ./prepare.sh mainnet
+
+linux_testnet:
+  image: greenaddress/electron@sha256:d0f0440a10cc8c4a476eefcf479cb7f7963f247361b16d6369e6c7993845a678
+  artifacts:
+    expire_in: 1 hour
+    paths:
+    - dist/greenaddress*.AppImage
+    when: on_success
+  tags:
+    - ga
+  script:
+    - cd $CI_PROJECT_DIR
+    - ./prepare.sh testnet
+
+osx_mainnet:
+  tags:
+    - osx
+  artifacts:
+    expire_in: 1 hour
+    paths:
+    - dist/GreenAddress*.dmg
+    when: on_success
+  script:
+    - cd $CI_PROJECT_DIR
+    - ./prepare.sh mainnet
+
+osx_testnet:
+  tags:
+    - osx
+  artifacts:
+    expire_in: 1 hour
+    paths:
+    - dist/GreenAddress*.dmg
+    when: on_success
+  script:
+    - cd $CI_PROJECT_DIR
+    - ./prepare.sh testnet
+
+windows_mainnet:
+  tags:
+    - win10
+  artifacts:
+    expire_in: 1 hour
+    paths:
+    - dist/GreenAddress*.exe
+    when: on_success
+  script:
+    - windows_build.bat mainnet
+
+windows_testnet:
+  tags:
+    - win10
+  artifacts:
+    expire_in: 1 hour
+    paths:
+    - dist/GreenAddress*.exe
+    when: on_success
+  script:
+    - windows_build.bat testnet
+
+package_release:
+  tags:
+    - garelease
+  stage: deploy
+  artifacts:
+    expire_in: 14 days
+    paths:
+    - dist/*
+    when: on_success
+  script: cd $CI_PROJECT_DIR/dist && /opt/process_release
+  dependencies:
+  - osx_mainnet
+  - osx_testnet
+  - linux_mainnet
+  - linux_testnet
+  - windows_mainnet
+  - windows_testnet
