@@ -16,6 +16,9 @@
       "package.json"
     ],
     "linux": {
+      "target": [
+        "AppImage"
+      ],
       "desktop": {
         "MimeType": "x-scheme-handler/bitcoin;"
       }
