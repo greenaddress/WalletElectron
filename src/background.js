@@ -47,7 +47,9 @@ const setApplicationMenu = () => {
       ]
     })
   }
-  Menu.setApplicationMenu(Menu.buildFromTemplate(template));
+  if (template.length) {
+    Menu.setApplicationMenu(Menu.buildFromTemplate(template));
+  }
 };
 
 // Save userData in separate folders for each environment.
