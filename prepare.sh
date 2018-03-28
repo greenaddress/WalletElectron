@@ -20,6 +20,9 @@ export USE_SYSTEM_XORRISO=true
 # Default to mainnet, allow override via command line argument
 BITCOIN_NETWORK=${1:-mainnet}
 
+# Define the default build type
+BUILD_TYPE=${2:-release}
+
 if [ "${BITCOIN_NETWORK}" != "mainnet" ]; then
     # FIXME: Should use something like the below but not released yet
     # ${NODE_PACMAN} config set name greenaddress-electron-${BITCOIN_NETWORK}
@@ -94,4 +97,4 @@ cp app/static/wallet/config_${BITCOIN_NETWORK}.js app/static/wallet/config.js
 cp app/static/wallet/network_${BITCOIN_NETWORK}.js app/static/wallet/network.js
 
 ${NODE_PACMAN} install
-${NODE_PACMAN} run release
+${NODE_PACMAN} run $BUILD_TYPE

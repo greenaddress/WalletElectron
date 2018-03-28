@@ -8,6 +8,8 @@ REM Default BITCOIN_NETWORK to mainnet
 REM Allow override via command line argument
 if "%1"=="" (set BITCOIN_NETWORK=mainnet) else (set BITCOIN_NETWORK=%1)
 
+if "%2"=="" (set BUILD_TYPE=release) else (set BUILD_TYPE=%2)
+
 if "%BITCOIN_NETWORK%"=="mainnet" (
     python -c "s = open('package.json').read().replace('SEDREPLACED_NETWORK', '').replace('SEDREPLACED_NAME', ''); open('package.json', 'w').write(s)"
 ) else (
@@ -54,4 +56,4 @@ copy app\static\wallet\network_%BITCOIN_NETWORK%.js app\static\wallet\network.js
 
 cd %ROOT_DIR%
 call %PM% install
-call %PM% run release
+call %PM% run %BUILD_TYPE%

@@ -14,6 +14,10 @@ For TESTNET run `./prepare.sh testnet`
 
 For MAINNET run `./prepare.sh mainnet`
 
+For TESTNET DEVELOPMENT run `./prepare.sh testnet development`
+
+For MAINNET DEVELOPMENT run `./prepare.sh mainnet development`
+
 ## Pull requests
 
 Before making a pull request for WalletElectron check if what you want to modify is present in https://github.com/greenaddress/GreenAddressWebFiles - if it is then you should do the PR there.
