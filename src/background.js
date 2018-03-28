@@ -11,6 +11,8 @@ import url from 'url';
 import { app, Menu } from 'electron';
 import { devMenuTemplate } from './menu/dev_menu_template';
 import { editMenuTemplate } from './menu/edit_menu_template';
+import { windowMenuTemplate } from './menu/window_menu_template';
+import { helpMenuTemplate } from './menu/help_menu_template';
 import createWindow from './helpers/window';
 
 // Special module holding environment variables which you declared
@@ -20,11 +22,32 @@ import env from './env';
 require('electron-context-menu')();
 
 const setApplicationMenu = () => {
+  const template = [];
   if (env.name !== 'production') {
-    const menus = [];
-    menus.push(devMenuTemplate);
-    Menu.setApplicationMenu(Menu.buildFromTemplate(menus));
+    template.push(devMenuTemplate);
   }
+
+  if (process.platform === 'darwin') {
+    template.push(editMenuTemplate);
+    template.push(windowMenuTemplate);
+    template.push(helpMenuTemplate);
+
+    template.unshift({
+      label: app.getName(),
+      submenu: [
+        { role: 'about' },
+        { type: 'separator' },
+        { role: 'services', submenu: [] },
+        { type: 'separator' },
+        { role: 'hide' },
+        { role: 'hideothers' },
+        { role: 'unhide' },
+        { type: 'separator' },
+        { role: 'quit' }
+      ]
+    })
+  }
+  Menu.setApplicationMenu(Menu.buildFromTemplate(template));
 };
 
 // Save userData in separate folders for each environment.
