@@ -130,10 +130,12 @@ app.on('ready', () => {
 
     setApplicationMenu();
 
+    var appName = app.getName().toLowerCase().replace(/ /g, '-').replace(/wallet/g, 'electron');
+
     const mainWindow = createWindow('main', {
       width: 1000,
       height: 600,
-      icon: 'build/icons/512x512.png'
+      icon: path.join(process.env.APPDIR, appName + '.png')
     });
     globalMainWindow = mainWindow;
 
