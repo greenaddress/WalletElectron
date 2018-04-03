@@ -10,6 +10,8 @@ if "%1"=="" (set BITCOIN_NETWORK=mainnet) else (set BITCOIN_NETWORK=%1)
 
 if "%2"=="" (set BUILD_TYPE=release) else (set BUILD_TYPE=%2)
 
+if "%BITCOIN_NETWORK%"!="mainnet" (set BITCOIN_NETWORK_FOR_TITLE=%BITCOIN_NETWORK%) else (set BITCOIN_NETWORK_FOR_TITLE='')
+
 if "%BITCOIN_NETWORK%"=="mainnet" (
     python -c "s = open('package.json').read().replace('SEDREPLACED_NETWORK', '').replace('SEDREPLACED_NAME', ''); open('package.json', 'w').write(s)"
 ) else (
@@ -46,7 +48,7 @@ set LIBWALLY_DIR=%ROOT_DIR%\webfiles\libwally-core
 cd webfiles
 call %PM% install
 call %PM% run build
-%ROOT_DIR%\venv\Scripts\python render_templates.py --electron ../app
+%ROOT_DIR%\venv\Scripts\python render_templates.py --electron --network %BITCOIN_NETWORK_FOR_TITLE% ../app
 xcopy /E build\static ..\app\static
 
 REM Copy network specific config files

@@ -23,12 +23,15 @@ BITCOIN_NETWORK=${1:-mainnet}
 # Define the default build type
 BUILD_TYPE=${2:-release}
 
+BITCOIN_NETWORK_FOR_TITLE=
+
 if [ "${BITCOIN_NETWORK}" != "mainnet" ]; then
     # FIXME: Should use something like the below but not released yet
     # ${NODE_PACMAN} config set name greenaddress-electron-${BITCOIN_NETWORK}
     # requires a release with https://github.com/yarnpkg/yarn/pull/5518 1.5.2+ yarn
     $SED -i "s/SEDREPLACED_NETWORK/-${BITCOIN_NETWORK}/" package.json
     $SED -i "s/SEDREPLACED_NAME/ ${BITCOIN_NETWORK}/" package.json
+    BITCOIN_NETWORK_FOR_TITLE=$(echo ${BITCOIN_NETWORK} | sed -e "s/\b\(.\)/\u\1/g")
 else
     $SED -i "s/SEDREPLACED_NETWORK//" package.json
     $SED -i "s/SEDREPLACED_NAME//" package.json
@@ -73,7 +76,7 @@ ${NODE_PACMAN} run build
 rm -rf node_modules
 
 # 2. Render *.html:
-../venv/bin/python render_templates.py --electron ../app
+../venv/bin/python render_templates.py --electron --network $BITCOIN_NETWORK_FOR_TITLE ../app
 
 TMPDIR=`mktemp -d`
 # 3. Copy *.js:
