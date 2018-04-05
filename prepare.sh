@@ -31,7 +31,8 @@ if [ "${BITCOIN_NETWORK}" != "mainnet" ]; then
     # requires a release with https://github.com/yarnpkg/yarn/pull/5518 1.5.2+ yarn
     $SED -i "s/SEDREPLACED_NETWORK/-${BITCOIN_NETWORK}/" package.json
     $SED -i "s/SEDREPLACED_NAME/ ${BITCOIN_NETWORK}/" package.json
-    BITCOIN_NETWORK_FOR_TITLE=$(echo ${BITCOIN_NETWORK} | sed -e "s/\b\(.\)/\u\1/g")
+    CAMELCASE_NET=$(echo ${BITCOIN_NETWORK} | sed -e "s/\b\(.\)/\u\1/g")
+    BITCOIN_NETWORK_FOR_TITLE="--network ${CAMELCASE_NET}"
 else
     $SED -i "s/SEDREPLACED_NETWORK//" package.json
     $SED -i "s/SEDREPLACED_NAME//" package.json
@@ -76,7 +77,7 @@ ${NODE_PACMAN} run build
 rm -rf node_modules
 
 # 2. Render *.html:
-../venv/bin/python render_templates.py --electron --network $BITCOIN_NETWORK_FOR_TITLE ../app
+../venv/bin/python render_templates.py --electron $BITCOIN_NETWORK_FOR_TITLE ../app
 
 TMPDIR=`mktemp -d`
 # 3. Copy *.js:
