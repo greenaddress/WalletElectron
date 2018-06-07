@@ -7,6 +7,9 @@ matrix:
       script: docker run -v $PWD:/walletelectron greenaddress/electron@sha256:d0f0440a10cc8c4a476eefcf479cb7f7963f247361b16d6369e6c7993845a678 /bin/sh -c "cd /walletelectron && ./prepare.sh mainnet"
     - os: osx
       osx_image: xcode8.3
+      language: node_js
+      node_js:
+        - "8"
       install:
         - brew update &> /dev/null
         - brew install swig yarn node gnu-sed autoconf pkg-config
