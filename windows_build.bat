@@ -21,13 +21,13 @@ if "%BITCOIN_NETWORK%"=="mainnet" (
 REM Clone and checkout specific commit of webfiles
 git clone https://github.com/greenaddress/GreenAddressWebFiles.git webfiles
 cd webfiles
-git checkout jswally-v0.0.8
+git checkout jswally-v0.0.9
 
 REM Clone and checkout a specific commit of libwally
 REM FIXME: We should use the wally repo defined in webfiles
 git clone https://github.com/ElementsProject/libwally-core.git libwally-core
 cd libwally-core
-git checkout c628a5af1d9ede89d142d70abaf4c4f09f0e3bc9
+git checkout 688e10454a4f5bd77fd847170c22ae5e8a84a7bb
 
 REM Create wrappers for wallyjs node module
 cd src
