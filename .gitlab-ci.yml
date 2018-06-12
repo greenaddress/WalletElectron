@@ -34,7 +34,7 @@ osx_mainnet:
     when: on_success
   script:
     - cd $CI_PROJECT_DIR
-    - ./prepare.sh mainnet
+    - TEST_TMP_DIR=/tmp ./prepare.sh mainnet
 
 osx_testnet:
   tags:
@@ -46,7 +46,7 @@ osx_testnet:
     when: on_success
   script:
     - cd $CI_PROJECT_DIR
-    - ./prepare.sh testnet
+    - TEST_TMP_DIR=/tmp ./prepare.sh testnet
 
 windows_mainnet:
   tags:
