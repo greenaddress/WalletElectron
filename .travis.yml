@@ -4,7 +4,7 @@ matrix:
   include:
     - services:
         - docker
-      script: docker run -v $PWD:/walletelectron greenaddress/electron@sha256:d0f0440a10cc8c4a476eefcf479cb7f7963f247361b16d6369e6c7993845a678 /bin/sh -c "cd /walletelectron && ./prepare.sh mainnet"
+      script: docker run -v $PWD:/walletelectron greenaddress/electron@sha256:7a5aa06b61780c27ea7d9610846ae037bfa2ca3159a86fc6bb6213d3ad47d5c8 /bin/sh -c "cd /walletelectron && ./prepare.sh mainnet"
     - os: osx
       osx_image: xcode8.3
       language: node_js
