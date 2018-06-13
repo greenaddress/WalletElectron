@@ -103,4 +103,4 @@ cp app/static/wallet/network_${BITCOIN_NETWORK}.js app/static/wallet/network.js
 ${NODE_PACMAN} install
 ${NODE_PACMAN} run $BUILD_TYPE
 
-chmod +x dist/greenaddress*.AppImage
+chmod +x dist/greenaddress*.AppImage || true
