@@ -130,13 +130,17 @@ app.on('ready', () => {
 
     setApplicationMenu();
 
-    var appName = app.getName().toLowerCase().replace(/ /g, '-').replace(/wallet/g, 'electron');
-
-    const mainWindow = createWindow('main', {
+    var windowOpts = {
       width: 1000,
-      height: 600,
-      icon: path.join(process.env.APPDIR, appName + '.png')
-    });
+      height: 600
+    };
+
+    if (process.platform == 'Linux') {
+      var appName = app.getName().toLowerCase().replace(/ /g, '-').replace(/wallet/g, 'electron');
+      windowOpts.extend({icon: path.join(process.env.APPDIR, appName + '.png')});
+    }
+
+    const mainWindow = createWindow('main', windowOpts);
     globalMainWindow = mainWindow;
 
     mainWindow.loadURL(url.format({
