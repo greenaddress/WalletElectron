@@ -135,9 +135,9 @@ app.on('ready', () => {
       height: 600
     };
 
-    if (process.platform == 'Linux') {
+    if (process.platform == 'linux') {
       var appName = app.getName().toLowerCase().replace(/ /g, '-').replace(/wallet/g, 'electron');
-      windowOpts.extend({icon: path.join(process.env.APPDIR, appName + '.png')});
+      windowOpts = Object.assign({}, windowOpts, {icon: path.join(process.env.APPDIR, appName + '.png')});
     }
 
     const mainWindow = createWindow('main', windowOpts);
