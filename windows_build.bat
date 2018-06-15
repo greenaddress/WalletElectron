@@ -10,8 +10,6 @@ if "%1"=="" (set BITCOIN_NETWORK=mainnet) else (set BITCOIN_NETWORK=%1)
 
 if "%2"=="" (set BUILD_TYPE=release) else (set BUILD_TYPE=%2)
 
-if "%BITCOIN_NETWORK%"=="mainnet" (set BITCOIN_NETWORK_FOR_TITLE='') else (set BITCOIN_NETWORK_FOR_TITLE="--network %BITCOIN_NETWORK%")
-
 if "%BITCOIN_NETWORK%"=="mainnet" (
     python -c "s = open('package.json').read().replace('SEDREPLACED_NETWORK', '').replace('SEDREPLACED_NAME', ''); open('package.json', 'w').write(s)"
 ) else (
@@ -21,7 +19,7 @@ if "%BITCOIN_NETWORK%"=="mainnet" (
 REM Clone and checkout specific commit of webfiles
 git clone https://github.com/greenaddress/GreenAddressWebFiles.git webfiles
 cd webfiles
-git checkout jswally-v0.0.9
+git checkout jswally-v0.0.10
 
 REM Clone and checkout a specific commit of libwally
 REM FIXME: We should use the wally repo defined in webfiles
@@ -48,7 +46,7 @@ set LIBWALLY_DIR=%ROOT_DIR%\webfiles\libwally-core
 cd webfiles
 call %PM% install
 call %PM% run build
-%ROOT_DIR%\venv\Scripts\python render_templates.py --electron %BITCOIN_NETWORK_FOR_TITLE% ../app
+if "%BITCOIN_NETWORK%"=="mainnet" (%ROOT_DIR%\venv\Scripts\python render_templates_py3.py --electron ../app) else (%ROOT_DIR%\venv\Scripts\python render_templates_py3.py --network %BITCOIN_NETWORK% --electron ../app)
 xcopy /E build\static ..\app\static
 
 REM Copy network specific config files
