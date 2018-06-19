@@ -50,15 +50,11 @@ if [ \! -e webfiles ]; then
 
     # full make run is not necessary to succeed with gen_context which is our only requirement
     ./tools/autogen.sh
-    ./configure
+    ./configure --disable-dependency-tracking --enable-js-wrappers --disable-swig-java --disable-swig-python
     make -j2 >/dev/null 2>/dev/null || true
 
-    cd src
-    python wrap_js/makewrappers/wrap.py wally Release
-    python wrap_js/makewrappers/wrap.py nodejs Release
-
-    test -f secp256k1/src/ecmult_static_context.h || (echo ecmult_static_context.h not generated properly - aborting; exit 1)
-    cd ../../..
+    test -f src/secp256k1/src/ecmult_static_context.h || (echo ecmult_static_context.h not generated properly - aborting; exit 1)
+    cd ../..
 fi
 
 if [ \! -e venv ]; then
