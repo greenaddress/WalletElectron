@@ -40,7 +40,7 @@ fi
 
 if [ \! -e webfiles ]; then
     WEBFILES_REPO=${WEBFILES_REPO:-https://github.com/greenaddress/GreenAddressWebFiles.git}
-    WEBFILES_COMMIT=${WEBFILES_COMMIT:-jswally-v0.0.13}
+    WEBFILES_COMMIT=${WEBFILES_COMMIT:-jswally-v0.0.14}
 
     git clone ${WEBFILES_REPO} webfiles
     cd webfiles
