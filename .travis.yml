@@ -6,7 +6,7 @@ matrix:
         - docker
       script: docker run -v $PWD:/walletelectron greenaddress/electron@sha256:7a5aa06b61780c27ea7d9610846ae037bfa2ca3159a86fc6bb6213d3ad47d5c8 /bin/sh -c "cd /walletelectron && ./prepare.sh mainnet"
     - os: osx
-      osx_image: xcode8.3
+      osx_image: xcode9.4
       language: node_js
       node_js:
         - "8"
