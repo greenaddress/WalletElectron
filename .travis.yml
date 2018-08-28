@@ -12,7 +12,7 @@ matrix:
         - "8"
       install:
         - brew update &> /dev/null
-        - brew install swig yarn node gnu-sed autoconf pkg-config
+        - brew install swig gnu-sed autoconf pkg-config
         - pip2 install virtualenv
       script:
         - cd $HOME/build/greenaddress/WalletElectron && ./prepare.sh mainnet
