@@ -10,6 +10,7 @@ matrix:
       language: node_js
       node_js:
         - "8"
+        - "10"
       install:
         - brew update &> /dev/null
         - brew install swig gnu-sed autoconf pkg-config
