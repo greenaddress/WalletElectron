@@ -44,7 +44,7 @@ if [ \! -e webfiles ]; then
 
     git clone ${WEBFILES_REPO} webfiles
     cd webfiles
-    git checkout ${WEBFILES_COMMIT}
+    git checkout js_updates
     ./fetch_libwally.sh
     cd libwally-core
 
