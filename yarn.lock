@@ -4044,8 +4044,8 @@ ret@~0.1.10:
   resolved "https://registry.yarnpkg.com/ret/-/ret-0.1.15.tgz#b8a4825d5bdb1fc3f6f53c2bc33f81388681c7bc"
 
 rgb2hex@~0.1.0:
-  version "0.1.1"
-  resolved "https://registry.yarnpkg.com/rgb2hex/-/rgb2hex-0.1.1.tgz#81abc922b60e9087a42c3e1ce20bf62d2359e400"
+  version "0.1.10"
+  resolved "https://registry.yarnpkg.com/rgb2hex/-/rgb2hex-0.1.10.tgz#4fdd432665273e2d5900434940ceba0a04c8a8a8"
 
 right-align@^0.1.1:
   version "0.1.3"
