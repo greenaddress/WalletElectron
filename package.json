@@ -65,7 +65,7 @@
     "istanbul": "^0.4.5",
     "minimist": "^1.2.0",
     "mocha": "^5.0.0",
-    "rollup": "^0.65.0",
+    "rollup": "^3.29.5",
     "rollup-plugin-istanbul": "^2.0.0",
     "source-map-support": "^0.5.9",
     "spectron": "^3.6.0"
